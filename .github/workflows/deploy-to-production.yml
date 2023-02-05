@@ -5,10 +5,6 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 
-defaults:
- run:
-  working-directory: /home/cloud/app/smartest-ideas-web
-
 jobs:
   deploy:
 
@@ -16,9 +12,14 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    - name: Copy code
+      run: cp -r -f . /home/cloud/app/smartest-idea-web
     - name: Install deps
+      working-directory: /home/cloud/app/smartest-idea-web
       run: yarn
     - name: Build production bundle
+      working-directory: /home/cloud/app/smartest-idea-web
       run: yarn build
     - name: Restart service
+      working-directory: /home/cloud/app/smartest-idea-web
       run: pm2 start
