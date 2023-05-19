@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Instalar java
+        run: sudo apt install openjdk-8-jdk
+
       - name: Install JMeter
         run: sudo apt-get install jmeter -y
 
