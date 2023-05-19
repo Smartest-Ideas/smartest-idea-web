@@ -2,10 +2,10 @@
 name: Análisis de código
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+   
 
 jobs:
   sonarcloud:

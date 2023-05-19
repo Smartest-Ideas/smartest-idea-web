@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm i
 
       - name: Compilar código
         run: npm run build
