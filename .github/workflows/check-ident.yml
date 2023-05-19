@@ -1,0 +1,22 @@
+ 
+name: Verificar indentación del código
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  indentacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificar indentación
+        run: npx eslint --ext .ts,.tsx .

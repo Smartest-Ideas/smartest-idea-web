@@ -1,0 +1,22 @@
+ 
+name: Análisis de seguridad del código
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  seguridad:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Análisis de seguridad del código
+        run: npx snyk test

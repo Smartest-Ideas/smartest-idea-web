@@ -1,0 +1,25 @@
+
+name: Performance Tests
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  performance-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install JMeter
+        run: sudo apt-get install jmeter -y
+
+      - name: Run performance tests
+        run: jmeter -n -t performance-tests/test-plan.jmx -l results.jtl
+
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: Performance Test Results
+          path: results.jtl
